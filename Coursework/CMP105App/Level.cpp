@@ -4,6 +4,9 @@ Level::Level(sf::RenderWindow& hwnd, Input& in) :
 	BaseLevel(hwnd, in)
 {
 	// initialise game objects
+	m_snake.setRadius(10);
+	m_snake.setPosition({ 100, 100 });
+	m_snake.setFillColor(sf::Color::Green);
 
 }
 
@@ -26,7 +29,7 @@ void Level::update(float dt)
 void Level::render()
 {
 	beginDraw();
-
+	m_window.draw(m_snake);
 	endDraw();
 }
 
