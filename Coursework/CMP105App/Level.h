@@ -5,7 +5,7 @@
 class Level : BaseLevel{
 public:
 
-	enum class Direction { UP, DOWN, LEFT, RIGHT };
+	enum class Direction { NONE, UP, DOWN, LEFT, RIGHT };
 	Direction m_direction;
 
 	Level(sf::RenderWindow& window, Input& input);
@@ -26,14 +26,15 @@ private:
 	int snakeRadius = 15;
 	float m_speed = 250.f;
 
+	// Death flag
+	bool m_justDied = false;
+
 	// Input structure, storing the keyboard inputs
 	struct Keyboard {
 
 		int x, y;
-		Direction left, right, up, down;
+		Direction none, up, down, left, right;
 
 	};
-
-	// Default variables for level class.
 	
 };

@@ -20,6 +20,7 @@ public:
 	bool isKeyDown(sf::Keyboard::Scancode key);
 	bool isPressed(sf::Keyboard::Scancode key);
 
+
 	// called every frame (from main()) to copy current over to previous
 	void update();
 

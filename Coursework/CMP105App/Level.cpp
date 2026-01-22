@@ -6,6 +6,11 @@ Level::Level(sf::RenderWindow& hwnd, Input& in) :
 	BaseLevel(hwnd, in)
 {
 
+	std::cout << "Level constructor working" << std::endl;
+
+	//Set data for when nothing is pressed (after death)
+	m_direction = Direction::NONE;
+
 	// Randomise seed
 	std::srand(static_cast<unsigned>(std::time(nullptr)));
 
@@ -79,29 +84,46 @@ void Level::update(float dt)
 		snakePos.y > window_size.y - radius || snakePos.y < 0) {
 
 		m_snake.setPosition({ window_size.x * 0.5f, window_size.y * 0.5f });
-
-		m_direction = Direction::UP;
+		m_direction = Direction::NONE;
 		spawnFood();
+
+		//Set justDied to true
+		m_justDied = true;
 
 	}
 
-	switch (m_direction) {
+	if (!m_justDied) {
+
+		switch (m_direction) {
 
 		case Direction::UP:
-		m_snake.move({ 0, -m_speed * dt });
-		break;
+			m_snake.move({ 0, -m_speed * dt });
+			break;
 
 		case Direction::LEFT:
-		m_snake.move({ -m_speed * dt, 0.f });
-		break;
+			m_snake.move({ -m_speed * dt, 0.f });
+			break;
 
 		case Direction::DOWN:
-		m_snake.move({ 0, m_speed * dt });
-		break;
+			m_snake.move({ 0, m_speed * dt });
+			break;
 
 		case Direction::RIGHT:
-		m_snake.move({ m_speed * dt, 0.f });
-		break;
+			m_snake.move({ m_speed * dt, 0.f });
+			break;
+
+		case Direction::NONE:
+			//Do nothing
+			break;
+
+		}
+
+	}
+
+	else {
+
+		// Clear the flag after skipping movement once
+		m_justDied = false;
 
 	}
 
