@@ -12,6 +12,7 @@ Input::Input()
 	m_mouse.right = MouseState::UP;
 	m_mouse.x = 0;
 	m_mouse.y = 0;
+
 }
 
 void Input::setKeyDown(sf::Keyboard::Scancode key)
