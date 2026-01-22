@@ -21,6 +21,9 @@ private:
 	// Default functions for rendering to the screen.
 	sf::CircleShape m_snake;
 	sf::RectangleShape m_food;
+
+	int foodSize = 20;
+	int snakeRadius = 15;
 	float m_speed = 250.f;
 
 	// Input structure, storing the keyboard inputs
