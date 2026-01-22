@@ -2,7 +2,7 @@
 
 #include "Framework/BaseLevel.h"
 
-class Level : BaseLevel{
+class Level : public BaseLevel{
 public:
 
 	enum class Direction { NONE, UP, DOWN, LEFT, RIGHT };

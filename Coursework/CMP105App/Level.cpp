@@ -17,13 +17,13 @@ Level::Level(sf::RenderWindow& hwnd, Input& in) :
 	// initialise game objects
 
 	// Set up snake
-	m_snake.setRadius(snakeRadius);
-	m_snake.setPosition({ 300, 300 });
+	m_snake.setRadius((float)snakeRadius);
+	m_snake.setPosition({ 300.0f, 300.0f });
 	m_snake.setFillColor(sf::Color::Green);
 
 	// Set up food
-	m_food.setSize({ foodSize, foodSize });
-	m_food.setPosition({ 100, 100 });
+	m_food.setSize({ (float)foodSize, (float)foodSize });
+	m_food.setPosition({ 100.0f, 100.0f });
 	m_food.setFillColor(sf::Color::Red);
 	spawnFood();
 
@@ -80,10 +80,15 @@ void Level::update(float dt)
 	float radius = m_snake.getRadius();
 
 
-	if (snakePos.x > window_size.x - radius || snakePos.x < 0 || 
-		snakePos.y > window_size.y - radius || snakePos.y < 0) {
+	if (snakePos.x > window_size.x - radius || snakePos.x < 0.0f || 
+		snakePos.y > window_size.y - radius || snakePos.y < 0.0f) {
 
-		m_snake.setPosition({ window_size.x * 0.5f, window_size.y * 0.5f });
+		m_snake.setPosition({ 
+			static_cast<float>(window_size.x) * 0.5f, 
+			static_cast<float>(window_size.y) * 0.5f 
+			
+		});
+
 		m_direction = Direction::NONE;
 		spawnFood();
 
@@ -140,6 +145,8 @@ void Level::render()
 }
 
 void Level::spawnFood() {
+
+	sf::Vector2u windowSize = m_window.getSize();
 
 	float x = rand() % (m_window.getSize().x - foodSize);
 	float y = rand() % (m_window.getSize().y - foodSize);

@@ -142,4 +142,3 @@ bool Input::isRightMousePressed()
 	}
 	return false;
 }
-
