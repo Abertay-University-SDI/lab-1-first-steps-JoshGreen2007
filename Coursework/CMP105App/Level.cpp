@@ -132,6 +132,32 @@ void Level::update(float dt)
 
 	}
 
+	// Collision statement for snake interaction
+	if (m_snake.getGlobalBounds().findIntersection(m_food.getGlobalBounds())) {
+
+		// Get window size before reset
+		sf::Vector2u windowSize = m_window.getSize();
+
+		// Set new position around given screen size
+		m_snake.setPosition(
+			sf::Vector2f(
+				static_cast<float>(windowSize.x) * 0.5f,
+				static_cast<float>(windowSize.y) * 0.5f
+			)
+		);
+
+		// Reset direction
+		m_direction = Direction::NONE;
+
+		// Respawn food
+		spawnFood();
+
+		// Set justDied to true to call death info
+		m_justDied = true;
+
+
+	}
+
 }
 
 // Render level
