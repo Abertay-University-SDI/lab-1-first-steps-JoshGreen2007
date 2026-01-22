@@ -104,6 +104,7 @@ int main()
 		// Update input class, handle pressed keys
 		// Must be done last.
 		input.update();
+
 	}
 
 }

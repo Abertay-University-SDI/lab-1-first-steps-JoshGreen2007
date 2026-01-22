@@ -46,6 +46,7 @@ private:
 	{
 		int x, y;
 		MouseState left, right;
+
 	};
 
 	// Mouse variable
